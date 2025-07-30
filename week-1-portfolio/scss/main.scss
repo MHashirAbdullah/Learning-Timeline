@@ -1,0 +1,327 @@
+@use "sass:color";
+
+// Variables
+$bg-color: #f4f4f4;
+$primary: #333;
+$dark-bg: #121212;
+$dark-text: #ddd;
+$button-color: #007bff;
+$font-family: "Arial", sans-serif;
+$transition: all 0.3s ease;
+
+// Base styles
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  background: $bg-color;
+  color: $primary;
+  margin: 0;
+  padding: 0;
+  transition: $transition;
+  line-height: 1.6;
+}
+
+body.dark-mode {
+  background: $dark-bg;
+  color: $dark-text;
+
+  header {
+    background: #1a1a1a;
+    color: $dark-text;
+  }
+
+  main {
+    h2 {
+      color: $dark-text;
+    }
+
+    #projects ul li {
+      background: #1e1e1e;
+      border-color: #444;
+      color: $dark-text;
+
+      h3 {
+        color: #4da6ff;
+      }
+
+      p {
+        color: $dark-text;
+      }
+
+      a {
+        color: #4da6ff;
+      }
+    }
+
+    #contact form {
+      input, textarea {
+        background: #1e1e1e;
+        color: $dark-text;
+        border-color: #444;
+
+        &::placeholder {
+          color: #888;
+        }
+      }
+    }
+  }
+
+  footer {
+    background: #1a1a1a;
+    color: $dark-text;
+  }
+}
+
+header {
+  background: $primary;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  h1 {
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  button {
+    background: none;
+    color: white;
+    border: 1px solid white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: $transition;
+    border-radius: 5px;
+    font-size: 1.2rem;
+
+    &:hover {
+      background: white;
+      color: $primary;
+    }
+  }
+
+  #visitor-count {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+}
+
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  section {
+    margin-bottom: 3rem;
+
+    &:last-child {
+      margin-bottom: 2rem;
+    }
+  }
+
+  h2 {
+    margin-bottom: 1.5rem;
+    color: $primary;
+    font-size: 2rem;
+    border-bottom: 2px solid $button-color;
+    padding-bottom: 0.5rem;
+  }
+
+  #about-me {
+    p {
+      font-size: 1.1rem;
+      max-width: 800px;
+    }
+  }
+
+  #projects {
+    ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      min-height: 200px;
+      position: relative;
+
+      li {
+        background: white;
+        padding: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        transition: $transition;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h3 {
+          margin-top: 0;
+          color: $button-color;
+        }
+
+        p {
+          margin-bottom: 1rem;
+        }
+
+        a {
+          color: $button-color;
+          text-decoration: none;
+          font-weight: bold;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid $button-color;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      p {
+        margin: 0;
+        color: #666;
+        font-size: 1rem;
+      }
+    }
+
+    &.dark-mode .loader p {
+      color: #aaa;
+    }
+  }
+
+  #contact {
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+
+      input,
+      textarea {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: inherit;
+        transition: $transition;
+
+        &:focus {
+          outline: none;
+          border-color: $button-color;
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      button {
+        background: $button-color;
+        color: white;
+        padding: 1rem;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: $transition;
+        border-radius: 5px;
+        font-weight: bold;
+
+        &:hover {
+          background: color.adjust($button-color, $lightness: -10%);
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+footer {
+  background: $primary;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  main {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    #projects ul {
+      grid-template-columns: 1fr;
+    }
+  }
+}

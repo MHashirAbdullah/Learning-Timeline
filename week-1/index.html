@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Portfolio</h1>
+      <button id="dark-mode-toggle">🌙</button>
+      <p id="visitor-count">Visitor Online: 0</p>
+    </header>
+    <main>
+      <section id="about-me">
+        <h2>About me</h2>
+        <p>I am a web Developer and love to build web apps.</p>
+      </section>
+
+      <section id="projects">
+        <h2>Github Projects</h2>
+        <ul id="repo-list"></ul>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+          <input id="name" type="text" placeholder="Your Name" required />
+          <input id="email" type="email" placeholder="Your Email" required />
+          <textarea id="message" placeholder="Your Message" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 Hashir Abdullah</footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>
